@@ -1,14 +1,19 @@
+---
 - defaults:
     link:
       relink: true
-
-- clean: ['~']
-
+- clean:
+    - "~"
+    - ~/.config
 - link:
-    ~/.config/.nvim:
-      relink: true
     ~/.zshrc:
       force: true
-
+    ~/.config/:
+      glob: true
+      path: config/**
+      create: true
+      relink: true
+      exclude: [ config/Code ]
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
+    - - git submodule update --init --recursive
+      - Installing submodules
