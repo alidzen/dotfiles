@@ -16,3 +16,29 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('i', 'jk', '<Esc>', { silent = true })
 
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+
+-- copy/paste from OS buffer
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '"_pD')
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
+
+-- move highlighted strings up/down in visual mode
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- delte whole string
+vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+
+-- disable accidentally close terminal
+vim.keymap.set("n", "Q", "<nop>")
+
+-- format with lsp
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+
+-- quick list navigation fix
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+
+-- replace word
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
