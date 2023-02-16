@@ -1,4 +1,14 @@
-require('dgol')
+require('den.plugins-instal')
+require('den.core.settings')
+require('den.core.keymaps')
+
+-- plugins
+require('den.plugins.treesitter')
+require('den.plugins.mason')
+require('den.plugins.lsp')
+require('den.plugins.telescope')
+require('den.plugins.undotree')
+require('den.plugins.harpoon')
 
 -- Set lualine as statusline
 -- See `:help lualine.txt`
