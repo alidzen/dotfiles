@@ -37,6 +37,14 @@ require('packer').startup(function(use)
     end,
   }
 
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    tag = 'nightly'
+  }
+
   use { -- Additional text objects via treesitter
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
