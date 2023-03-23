@@ -9,7 +9,6 @@ require('den.plugins.lsp')
 require('den.plugins.telescope')
 require('den.plugins.undotree')
 require('den.plugins.harpoon')
-require('den.plugins.tree')
 
 -- Set lualine as statusline
 -- See `:help lualine.txt`
