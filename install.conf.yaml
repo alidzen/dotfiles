@@ -13,7 +13,13 @@
       path: config/**
       create: true
       relink: true
-      exclude: [ config/Code ]
+      exclude: [config/Code]
+    ~/bin/:
+      glob: true
+      path: bin/**
+      create: true
+      relink: true
+
 - shell:
     - - git submodule update --init --recursive
       - Installing submodules
