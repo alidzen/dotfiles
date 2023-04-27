@@ -6,14 +6,16 @@
     - "~"
     - ~/.config
 - link:
-    ~/.zshrc:
-      force: true
+    ~/.zshrc: zshrc
+    ~/.fzf.zsh: fzf.zsh
+
     ~/.config/:
       glob: true
       path: config/**
       create: true
       relink: true
       exclude: [config/Code]
+
     ~/bin/:
       glob: true
       path: bin/**
