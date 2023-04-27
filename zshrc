@@ -80,7 +80,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #
-plugins=(git zsh-autosuggestions)
+plugins=(git ssh-agent zsh-autosuggestions)
 # This speeds up pasting w/ autosuggest
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
 pasteinit() {
@@ -132,4 +132,3 @@ alias python=/usr/bin/python3
 alias pip=/usr/local/opt/python@3.7/bin/pip3
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
