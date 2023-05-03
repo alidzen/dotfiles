@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+session=$(find ~ ~/projects -maxdepth 1 -mindepth 1 -type d | fzf)
+session_name=$(basename "$session")
+
+cd $(dirname $(find ~ ~/projects -maxdepth 1 -mindepth 1 -type d | fzf))
+
