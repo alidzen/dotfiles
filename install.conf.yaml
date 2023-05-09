@@ -16,6 +16,12 @@
       relink: true
       exclude: [config/Code]
 
+    ~/.tmuxifier/:
+      glob: true
+      path: tmuxifier/**
+      create: true
+      relink: true
+
     ~/bin/:
       glob: true
       path: bin/**
