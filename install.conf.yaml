@@ -18,7 +18,7 @@
 
     ~/.tmuxifier/layouts/:
       glob: true
-      path: tmuxifier/layouts/**
+      path: tmuxifier-layouts/**
       create: true
       relink: true
 
