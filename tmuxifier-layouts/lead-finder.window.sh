@@ -10,7 +10,6 @@ new_window "editor"
 run_cmd "nvim"
 
 new_window "terminal"
-run_cmd "nvim"
 
 new_window "client"
 run_cmd "cd ~/projects/lead-finder/client/"
