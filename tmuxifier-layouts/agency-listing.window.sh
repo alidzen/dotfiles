@@ -18,7 +18,6 @@ run_cmd "npm run dev:next"
 
 new_window "server"
 run_cmd "cd ~/projects/agency-directory/"
-run_cmd "git checkout master"
 run_cmd "git pull"
 run_cmd "SPRING_PROFILES_ACTIVE=dev ./gradlew :server:app-api:clean :server:app-api:build :server:app-api:bootRun -x test"
 
