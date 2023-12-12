@@ -6,9 +6,6 @@ window_root "~/projects/agency-directory-frontend/"
 # layout file name.
 #
 #
-new_window "editor"
-run_cmd "nvim"
-
 new_window "terminal"
 
 new_window "client"
@@ -21,7 +18,7 @@ run_cmd "cd ~/projects/agency-directory/"
 run_cmd "git pull"
 run_cmd "SPRING_PROFILES_ACTIVE=dev ./gradlew :server:app-api:clean :server:app-api:build :server:app-api:bootRun -x test"
 
-select_window "editor"
+select_window "terminal"
 
 #split_h 50
 

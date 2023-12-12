@@ -8,6 +8,8 @@
 - link:
     ~/.zshrc: zshrc
     ~/.fzf.zsh: fzf.zsh
+    ~/.ideavimrc: ideavimrc
+    ~/.vimrc: vimrc
 
     ~/.config/:
       glob: true

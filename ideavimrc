@@ -1,0 +1,126 @@
+source ~/.vimrc
+
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set textobj-entire
+set ReplaceWithRegister
+set NERDTree
+set highlightedyank
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+let g:highlightedyank_highlight_duration = "150"
+let g:highlightedyank_highlight_color = "rgba(244, 128, 35, 155)"
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set nu
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+set visualbell
+set noerrorbells
+
+""" Mappings --------------------------------
+map <leader>mf <Plug>(easymotion-s)
+map <leader>me <Plug>(easymotion-f)
+
+nnoremap L $
+nnoremap H ^
+vnoremap L $
+vnoremap H ^
+
+""" Code --------------------------------
+map <leader>cr <Action>(RenameElement)
+map <leader>ca <Action>(ShowIntentionActions)
+map <leader>cf <Action>(ReformatCode)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+nnoremap <leader>cl :action Refactorings.QuickListPopupAction<CR>
+nnoremap mp :action PasteMultiple <CR>
+
+""" Navigation --------------------------------
+map <C-h> <Action>(PreviousTab)
+map <C-l> <Action>(NextTab)
+" map <C-l> <Action>(SeleceNextTab)
+map <leader>sl <Action>(RecentLocations)
+map [e <Action>(JumpToLastChange)
+map ]e <Action>(JumpToNextChange)
+map <leader>H <Action>(HideAllWindows)
+nnoremap / :action Find<CR>
+xnoremap / :action Find<CR>
+nnoremap <c-s> :action FileStructurePopup<CR>
+nnoremap <leader>e :NERDTreeFocus<CR>
+nnoremap <leader>te :NERDTreeToggle<CR>
+
+""" Find --------------------------------
+map <leader>ff <Action>(GotoFile)
+map <leader>fr <Action>(RecentFiles)
+noremap <Space>fR :action RecentChangedFiles<CR>
+map <leader>ft <Action>(ActivateTODOToolWindow)
+map <leader>fT <Action>(ToolWindowsGroup)
+map <leader>fu <Action>(FindUsages)
+map <leader>fD <Action>(ActivateDatabaseToolWindow)
+map <leader>fB <Action>(ActivateBookmarksToolWindow)
+map <leader>fS <Action>(ActivateStructureToolWindow)
+map <leader>fW <Action>(WindowMenu)
+nnoremap <leader>fs :action GotoSymbol<CR>
+
+""" Search --------------------------------
+map <leader>sg <Action>(FindInPath)
+map <leader>sr <Action>(ReplaceInPath)
+
+""" Buffers --------------------------------
+map <leader>bd <Action>(CloseContent)
+
+map <leader>bp <Action>(PinActiveEditorTab)
+map <leader>bP <Action>(CloseAllUnpinnedEditors)
+map <leader>bD <Action>(CloseAllEditors)
+map <leader>bA <Action>(CloseAllEditorsButActive)
+map <leader>bU <Action>(CloseAllUnmodifiedEditors)
+
+""" Git --------------------------------
+map <leader>gc <Action>(CheckinProject)
+map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+map <leader>gb <Action>(Git.Branches)
+map <leader>ga <Action>(Annotate)
+map <leader>gp <Action>(Vcs.Push)
+map <leader>gD <Action>(Git.CompareWithBranch)
+map <leader>gd <Action>(Compare.SameVersion)
+nnoremap <leader>hh :action LocalHistory.ShowHistory<CR>
+
+""" Folding --------------------------------
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zo :action ExpandRegion<CR>
+nnoremap <leader>zc :action CollapseAllRegions<CR>
+nnoremap <leader>zo :action ExpandAllRegions<CR>
+
+""" Go To --------------------------------
+
+""" Diagnostics/Debug --------------------------------
+map [d <Action>(GotoPreviousError)
+map ]d <Action>(GotoNextError)
+
+map <leader>s <Action>(SelectInProjectView)
+map <leader>a <Action>(Annotate)
+
+map <S-Space> <Action>(GotoNextError)
+
+map <leader>db <Action>(ToggleLineBreakpoint)
+map <leader>o <Action>(FileStructurePopup)
+
+
