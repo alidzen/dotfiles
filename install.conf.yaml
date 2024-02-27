@@ -24,6 +24,12 @@
       create: true
       relink: true
 
+    ~/my_scripts/:
+      glob: true
+      path: scripts/**
+      create: true
+      relink: true
+
 - shell:
     - - git submodule update --init --recursive
       - Installing submodules

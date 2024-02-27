@@ -7,18 +7,18 @@ window_root "~/projects/agency-directory-frontend/"
 #
 #
 new_window "terminal"
+run_cmd "nvm use"
 
 new_window "client"
-run_cmd "cd ~/projects/agency-directory-frontend/"
-run_cmd "sleep 15"
-run_cmd "npm run dev:next"
+run_cmd "nvm use"
+run_cmd "echo npm run dev:next"
 
 new_window "server"
 run_cmd "cd ~/projects/agency-directory/"
 run_cmd "git pull"
 run_cmd "SPRING_PROFILES_ACTIVE=dev ./gradlew :server:app-api:clean :server:app-api:build :server:app-api:bootRun -x test"
 
-select_window "terminal"
+select_window "client"
 
 #split_h 50
 

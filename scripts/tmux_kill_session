@@ -1,0 +1,10 @@
+#! /bin/bash
+
+session=$(tmux ls | awk '{print substr($1, 0, length($1)-1)}' | fzf)
+
+# If no selection made, exit with status 0
+if [[ -z $selected ]]; then
+	exit 0
+fi
+
+tmux kill-session -t $session

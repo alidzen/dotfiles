@@ -1,0 +1,16 @@
+#! /bin/bash
+
+active_session=$(tmux ls | awk '{print substr($1, 0, length($1)-1)}' | fzf)
+
+# If no selection made, exit with status 0
+if [[ -z $active_session ]]; then
+	exit 0
+fi
+
+# Check if inside a tmux session
+if [[ -z $TMUX ]]; then
+	tmux attach-session -t $active_session
+	exit 0
+fi
+
+tmux switch-client -t $active_session

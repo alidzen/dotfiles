@@ -1,0 +1,45 @@
+#! /bin/bash
+
+back1() {
+	available_services=("messaging" "revalidation" "api" "api-bid-finder")
+	# Check if the argument exists in the array
+	if [[ " ${available_services[@]} " =~ " $1 " ]]; then
+		echo "Backend $1 is running."
+		if [ "$1" = "api-bid-finder" ]; then
+			echo "SPRING_PROFILES_ACTIVE=dev ./gradlew :server:app-api:clean :server:app-api:build :server:app-api:bootRun -x test"
+			SPRING_PROFILES_ACTIVE=dev ./gradlew :server:app-api:clean :server:app-api:build :server:app-api:bootRun -x test
+		else
+			echo "SPRING_PROFILES_ACTIVE=dev ./gradlew :server:app-${1}:clean :server:app-${1}:build :server:app-${1}:bootRun -x test"
+			SPRING_PROFILES_ACTIVE=dev ./gradlew :server:app-${1}:clean :server:app-${1}:build :server:app-${1}:bootRun -x test
+		fi
+	else
+		echo "Error: Service $1 does not exist."
+	fi
+}
+
+back() {
+	if [ -z "$1" ]; then
+		back1 $(echo "revalidation api messaging api-bid-finder" | tr " " "\n" | fzf)
+	fi
+
+	back1 ${1}
+
+}
+
+# Define the default function to run
+default_function=back
+
+# Check if any argument is provided
+if [ $# -gt 0 ]; then
+	# Check if the provided argument is a valid function
+	if declare -f "$1" >/dev/null; then
+		# Set the default function to the provided function
+		default_function="$1"
+		shift
+	else
+		back1 ${1}
+	fi
+fi
+
+# Run the default function with any remaining arguments passed to it
+"$default_function" "$@"
