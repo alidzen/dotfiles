@@ -18,6 +18,7 @@ return {
     opts = {
       colorscheme = "gruvbox",
     },
+    enabled = false,
   },
 
   -- change trouble config
@@ -154,7 +155,10 @@ return {
     event = "VeryLazy",
     opts = function()
       return {
-        --[[add your custom lualine config here]]
+        options = {
+          -- globalstatus = false,
+          theme = "solarized_dark",
+        },
       }
     end,
   },

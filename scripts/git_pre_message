@@ -23,9 +23,20 @@ modify_commit_message() {
 	echo "$commit_message"
 }
 
-# Read commit message and deploy flag from arguments
-commit_message="$1"
-deploy_flag="$2"
+# Parse the arguments
+commit_message=""
+deploy_flag=""
+
+for arg in "$@"; do
+	if [[ "$arg" == "-d" || "$arg" == "--deploy" ]]; then
+		deploy_flag="$arg"
+	else
+		commit_message="$commit_message $arg"
+	fi
+done
+
+# Remove leading/trailing whitespace
+commit_message=$(echo "$commit_message" | sed 's/^[ \t]*//;s/[ \t]*$//')
 
 # Check if the commit message is empty
 if [ -z "$commit_message" ]; then
@@ -34,7 +45,7 @@ if [ -z "$commit_message" ]; then
 fi
 
 # Check if deploy flag is provided
-if [[ "$deploy_flag" == "-d" || "$deploy_flag" == "--deploy" ]]; then
+if [ -n "$deploy_flag" ]; then
 	deploy=true
 else
 	deploy=false
