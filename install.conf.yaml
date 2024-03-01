@@ -10,6 +10,8 @@
     ~/.fzf.zsh: fzf.zsh
     ~/.ideavimrc: ideavimrc
     ~/.vimrc: vimrc
+    ~/.gitconfig: git/.gitconfig
+    ~/.gitconfig_code: git/.gitconfig_code
 
     ~/.config/:
       glob: true

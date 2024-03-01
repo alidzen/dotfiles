@@ -1,0 +1,12 @@
+[user]
+	name = denisgolubtsov
+	email = d.golubtsov@semrush.com
+[pull]
+	rebase = false
+[maintenance]
+	repo = /Users/denisgolubtsov/projects/agency-directory-profile
+
+[includeif "gitdir=~/code/"]
+  path=~/.gitconfig_code
+
+
