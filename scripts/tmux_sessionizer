@@ -2,10 +2,11 @@
 
 # Check if the number of arguments is equal to 1
 if [[ $# -eq 1 ]]; then
+	# TODO: add parsing for tmux session itself
 	selected=$1
 else
 	# If not, find directories in specified paths and select one interactively using fzf
-	selected=$(find ~/projects ~/code -mindepth 1 -maxdepth 1 -type d | fzf)
+	selected=$(find ~/projects ~/code -mindepth 1 -maxdepth 1 -type d | fzf --header="Open project" --reverse)
 fi
 
 # If no selection made, exit with status 0

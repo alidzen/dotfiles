@@ -11,7 +11,7 @@
     ~/.ideavimrc: ideavimrc
     ~/.vimrc: vimrc
     ~/.gitconfig: git/.gitconfig
-    ~/.gitconfig_code: git/.gitconfig_code
+    ~/code/.gitconfig: git/code/.gitconfig
 
     ~/.config/:
       glob: true

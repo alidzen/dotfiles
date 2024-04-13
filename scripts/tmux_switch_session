@@ -1,6 +1,6 @@
 #! /bin/bash
 
-active_session=$(tmux ls | awk '{print substr($1, 0, length($1)-1)}' | fzf)
+active_session=$(tmux ls | awk '{print substr($1, 0, length($1)-1)}' | fzf --header="Open Active project")
 
 # If no selection made, exit with status 0
 if [[ -z $active_session ]]; then
@@ -14,3 +14,5 @@ if [[ -z $TMUX ]]; then
 fi
 
 tmux switch-client -t $active_session
+
+# TODO: create function for deleting via fzf multi select and tmux

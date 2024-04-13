@@ -6,7 +6,11 @@
 [maintenance]
 	repo = /Users/denisgolubtsov/projects/agency-directory-profile
 
-[includeif "gitdir=~/code/"]
-  path=~/.gitconfig_code
+[includeIf "gitdir:~/code/"]
+	path = ~/code/.gitconfig
 
 
+[rerere]
+	enabled = true
+[push]
+	autoSetupRemote = true
