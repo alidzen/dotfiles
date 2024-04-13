@@ -1,0 +1,5 @@
+#! /bin/bash
+
+read -p "Enter commit message: " message
+
+git_pre_message "$message"
