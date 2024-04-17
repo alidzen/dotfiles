@@ -14,5 +14,3 @@ if [[ -z $TMUX ]]; then
 fi
 
 tmux switch-client -t $active_session
-
-# TODO: create function for deleting via fzf multi select and tmux

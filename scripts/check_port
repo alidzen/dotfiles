@@ -1,9 +1,0 @@
-#! /bin/bash
-
-PORT=8081
-
-if [-z $PORT]; then
-	echo "no PORT specified for listen. Listening ${PORT} by default"
-fi
-
-lsof -i tcp:8081
