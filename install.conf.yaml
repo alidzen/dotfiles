@@ -20,12 +20,6 @@
       relink: true
       exclude: [config/Code]
 
-    ~/.tmuxifier/layouts/:
-      glob: true
-      path: tmuxifier-layouts/**
-      create: true
-      relink: true
-
     ~/my_scripts/:
       glob: true
       path: scripts/**
