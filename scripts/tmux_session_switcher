@@ -1,7 +1,6 @@
 #!/bin/bash
 tmux ls -F#{session_name} | fzf --header="Open project ctrl-o global search, ctrl-n active" \
 	--reverse \
-	--margin 20% --padding 2% --border --color bg:#15141a,preview-bg:#333333 \
 	--bind "ctrl-o:reload-sync(find ~/projects ~/code -mindepth 1 -maxdepth 1 -type d)" \
 	--bind "ctrl-n:reload-sync:tmux ls -F#{session_name}" \
 	--bind "enter:become(tmux_sessionizer {})"

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-selected_sesssions=$(tmux ls -F#{session_name} | fzf --reverse --multi)
+selected_sesssions=$(tmux ls -F#{session_name} | fzf --reverse --multi --header="Kill multiple tmux sessions")
 
 for session in $selected_sesssions; do
 	tmux kill-session -t "$session"

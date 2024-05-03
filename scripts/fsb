@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Fuzzy search Git branches in a repo
+# Looks for local and remote branches
+# kudos: https://www.youtube.com/watch?v=-B5MTJXW-vA
+
+function fsb() {
+	local pattern=$*
+	local branches branch output message
+	branches=$(git branch --all | awk 'tolower($0) ~ /'"$pattern"'/')
+
+	branch=$(echo "$branches" | fzf-tmux -p --reverse -1 -0 +m)
+	local status=$?
+
+	if [[ $status -eq 130 ]]; then
+		exit 0 # Exit without error if cancelled
+	elif [ -z "$branch" ]; then
+		echo "[$0] No branch matches the provided pattern"
+		return
+	fi
+
+	branch=$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+	output=$(git checkout "$branch" 2>&1)
+
+	# Check if there's a message to display
+	if echo "$output" | grep -iqE 'behind|ahead|conflict|failed'; then
+		message="Git message:\n$output"
+		# Use tmux display-popup to show git messages and wait for a keypress
+		tmux display-popup -E "echo \"$message\"; echo 'Press enter to close...'; read"
+	else
+		# Show a simple message in tmux status-line
+		tmux display-message "Checkout to $branch"
+	fi
+}
+
+fsb "$@"
