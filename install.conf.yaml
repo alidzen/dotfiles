@@ -7,7 +7,7 @@
     - ~/.config
 - link:
     ~/.zshrc: zshrc
-    ~/.fzf.zsh: fzf.zsh
+    ~/.zshrc_private: zshrc_private
     ~/.ideavimrc: ideavimrc
     ~/.vimrc: vimrc
     ~/.gitconfig: git/.gitconfig
