@@ -1,5 +1,5 @@
 #!/bin/bash
-tmux ls -F#{session_name} | fzf --header="Open project ctrl-o global search, ctrl-n active" \
+tmux_list_with_git | fzf --header="Open project ctrl-o global search, ctrl-n active" \
 	--reverse \
 	--bind "ctrl-o:reload-sync(find ~/projects ~/code -mindepth 1 -maxdepth 1 -type d)" \
 	--bind "ctrl-n:reload-sync:tmux ls -F#{session_name}" \

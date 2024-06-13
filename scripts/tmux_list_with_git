@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Function to get the current git branch
+get_git_branch() {
+	local dir=$1
+	if [ -d "$dir/.git" ]; then
+		echo "$(basename $(git -C "$dir" symbolic-ref --short HEAD 2>/dev/null))"
+	fi
+}
+
+# Main script to list tmux sessions with git branches
+tmux_list_with_git() {
+	for session in $(tmux list-sessions -F '#{session_name}'); do
+		session_path="$HOME/projects/$session"
+		[ ! -d "$session_path" ] && session_path="$HOME/code/$session"
+
+		if [ -d "$session_path" ]; then
+			git_branch=$(get_git_branch "$session_path")
+			echo "$session ($git_branch)"
+		else
+			echo "$session"
+		fi
+	done
+}
+
+tmux_list_with_git
