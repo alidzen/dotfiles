@@ -190,4 +190,11 @@ if [ -f ~/.zshrc_private ]; then
   source ~/.zshrc_private
 fi
 
+# Source the work configuration if it exists
+if [ -f ~/.zshrc_work ]; then
+  source ~/.zshrc_work
+fi
+# set fpp default editor https://github.com/facebook/pathpicker
+FPP_EDITOR=nvim
+
 
