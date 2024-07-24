@@ -2,7 +2,7 @@
 
 # Check if the number of arguments is equal to 1
 if [[ $# -eq 1 ]]; then
-	selected=$(echo $1 | awk '{print $1}')
+	selected=$(echo "$1" | awk '{print $1}')
 else
 	# If not, find directories in specified paths and select one interactively using fzf
 	selected=$(find ~/projects ~/code -mindepth 1 -maxdepth 1 -type d | fzf --header="Open project" --reverse)
@@ -23,22 +23,22 @@ tmux_running=$(pgrep tmux)
 if [[ -z $TMUX ]]; then
 	# If tmux is running, check if it has a session with the selected name
 	if [[ -n $tmux_running ]]; then
-		if tmux has-session -t $selected_name >/dev/null 2>&1; then
+		if tmux has-session -t "$selected_name" >/dev/null 2>&1; then
 			# Attach to the existing tmux session
-			tmux attach-session -t $selected_name
+			tmux attach-session -t "$selected_name"
 			exit 0
 		fi
 	fi
 
 	# If not inside a tmux session and tmux is not running or doesn't have the session, start a new tmux session
-	tmux new-session -s $selected_name -c $selected
+	tmux new-session -s "$selected_name" -c "$selected"
 	exit 0
 fi
 
 # If a tmux session with the selected name does not exist, create one
-if ! tmux has-session -t=$selected_name 2>/dev/null; then
-	tmux new-session -ds $selected_name -c $selected
+if ! tmux has-session -t= "$selected_name" 2>/dev/null; then
+	tmux new-session -ds "$selected_name" -c "$selected"
 fi
 
 # Switch to the tmux session with the selected name
-tmux switch-client -t $selected_name
+tmux switch-client -t "$selected_name"

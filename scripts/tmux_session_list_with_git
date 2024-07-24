@@ -9,7 +9,7 @@ get_git_branch() {
 }
 
 # Main script to list tmux sessions with git branches
-tmux_list_with_git() {
+tmux_session_list_with_git() {
 	for session in $(tmux list-sessions -F '#{session_name}'); do
 		session_path="$HOME/projects/$session"
 		[ ! -d "$session_path" ] && session_path="$HOME/code/$session"
@@ -23,4 +23,4 @@ tmux_list_with_git() {
 	done
 }
 
-tmux_list_with_git
+tmux_session_list_with_git
