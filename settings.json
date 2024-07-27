@@ -1,0 +1,200 @@
+{
+    "workbench.colorTheme": "Default Dark Modern",
+    "debug.javascript.autoAttachFilter": "onlyWithFlag",
+    "editor.minimap.enabled": false,
+    "projectManager.git.baseFolders": ["$home/projects", "$home/code"],
+    "projectManager.sortList": "Recent",
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "window.newWindowDimensions": "maximized",
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "vim.leader": "<space>",
+    "vim.scroll": 30,
+    "editor.lineNumbers": "relative",
+    "vim.normalModeKeyBindingsNonRecursive": [
+      // NAVIGATION
+      // switch b/w buffers
+      {
+        "before": ["<S-h>"],
+        "commands": [":bprevious"]
+      },
+      {
+        "before": ["<S-l>"],
+        "commands": [":bnext"]
+      },
+      // buffer delete
+      {
+        "before": ["leader", "b", "d"],
+        "commands": ["workbench.action.closeActiveEditor"]
+      },
+      // delete all buffers
+      {
+        "before": ["leader", "b", "P"],
+        "commands": ["workbench.action.closeAllEditors"]
+      },
+      // splits
+      {
+        "before": ["leader", "v"],
+        "commands": [":vsplit"]
+      },
+      {
+        "before": ["leader", "s"],
+        "commands": [":split"]
+      },
+      // panes
+      {
+        "before": ["C-h"],
+        "commands": ["workbench.action.navigateLeft"]
+      },
+      {
+        "before": ["C-l"],
+        "commands": ["workbench.action.navigateRight"]
+      },
+      {
+        "before": ["C-k"],
+        "commands": ["workbench.action.navigateUp"]
+      },
+      {
+        "before": ["C-j"],
+        "command": ["workbench.action.navigateDown"]
+      },
+      // NICE TO HAVE
+      // navigate prev/next code diagnostic issue
+      {
+        "before": ["[", "d"],
+        "commands": ["editor.action.marker.prev"]
+      },
+      {
+        "before": ["]", "d"],
+        "commands": ["editor.action.marker.next"]
+      },
+      // Navigate to prev/next edited location
+      {
+        "before": ["]", "e"],
+        "commands": ["workbench.action.navigateForwardInEditLocations"]
+      },
+      {
+        "before": ["[", "e"],
+        "commands": ["workbench.action.navigateBackInEditLocations"]
+      },
+      {
+        "before": ["<leader>", "c", "a"],
+        "commands": ["editor.action.quickFix"]
+      },
+      {
+        "before": ["leader", "f", "f"],
+        "commands": ["workbench.action.quickOpen"]
+      },
+      {
+        "before": ["leader", "c", "f"],
+        "commands": ["editor.action.formatDocument"]
+      },
+      {
+        "before": ["S-k"],
+        "commands": ["editor.action.showDefinitionPreviewHover"]
+      },
+      {
+        // Go to definition instead of the .d.ts file
+        "before": ["g", "d"],
+        "commands": ["editor.action.goToTypeDefinition"]
+      },
+      {
+        // Go to implementation instead of the .d.ts file
+        "before": ["g", "r"],
+        "commands": ["editor.action.goToReferences"]
+      },
+      {
+        // Go to implementation
+        "before": ["g", "I"],
+        "commands": ["editor.action.goToImplementation"]
+      },
+      // toggle side panel
+      {
+        "before": ["leader", "e"],
+        "commands": ["workbench.action.toggleSidebarVisibility"]
+      },
+      // Open
+      {
+        "before": ["leader", "o", "p"],
+        "commands": ["projectManager.listProjectsNewWindow"]
+      }
+    ],
+    "vim.visualModeKeyBindings": [
+      // Stay in visual mode while indenting
+      {
+        "before": ["<"],
+        "commands": ["editor.action.outdentLines"]
+      },
+      {
+        "before": [">"],
+        "commands": ["editor.action.indentLines"]
+      },
+      // Move selected lines while staying in visual mode
+      {
+        "before": ["J"],
+        "commands": ["editor.action.moveLinesDownAction"]
+      },
+      {
+        "before": ["K"],
+        "commands": ["editor.action.moveLinesUpAction"]
+      },
+      // toggle comment selection
+      {
+        "before": ["leader", "c"],
+        "commands": ["editor.action.commentLine"]
+      }
+    ],
+    "vim.insertModeKeyBindings": [
+      {
+        "before": ["j", "k"],
+        "after": ["<Esc>"]
+      }
+    ],
+    "vim.foldfix": true,
+    // tmux integration
+    // "terminal.integrated.profiles.osx": {
+    //   "bash": null,
+    //   "tmux": {
+    //     "path": "zsh",
+    //     "args": ["-c", "tmux new -ADs ${PWD##*/}"],
+    //     "icon": "terminal-tmux"
+    //   }
+    // },
+    // "terminal.integrated.defaultProfile.osx": "tmux",
+    "editor.fontSize": 13,
+    "settingsSync.keybindingsPerPlatform": false,
+    "[astro]": {
+      "editor.defaultFormatter": "astro-build.astro-vscode"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "extensions.experimental.affinity": {
+      "asvetliakov.vscode-neovim": 1
+    },
+    "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.accessibilitySupport": "off",
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "explorer.confirmPasteNative": false,
+    "explorer.confirmDelete": false,
+    "[scss]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.sideBar.location": "right",
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "projectManager.git.maxDepthRecursion": 1,
+  }

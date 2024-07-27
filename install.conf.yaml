@@ -13,12 +13,20 @@
     ~/.gitconfig: git/.gitconfig
     ~/code/.gitconfig: git/code/.gitconfig
 
+    # VS Code path:
+    # Windows %APPDATA%\Code\User\settings.json
+    # macOS $HOME/Library/Application\ Support/Code/User/settings.json
+    # Linux $HOME/.config/Code/User/settings.json
+    # ~/Library/Application\ Support/Code/User/settings.json: config/vscode/settings.json
+    # ~/Library/Application\ Support/Code/User/keybindings.json: config/vscode/keybindings.json
+    ~/Library/Application\ Support/Code/User/settings.json: settings.json
+
     ~/.config/:
       glob: true
       path: config/**
       create: true
       relink: true
-      exclude: [config/Code]
+      exclude: [config/Code, config/vscode]
 
     ~/my_scripts/:
       glob: true
