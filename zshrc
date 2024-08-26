@@ -94,6 +94,9 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
+# fzf
+source <(fzf --zsh)
+
 source $ZSH/oh-my-zsh.sh
 eval "$(fzf --zsh)"
 
@@ -126,6 +129,10 @@ eval "$(fzf --zsh)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+#brew
+
+export PATH="/opt/homebrew/bin:$PATH"
+
 # my bash sctipts path
 export PATH="$HOME/my_scripts:$PATH"
 
@@ -138,7 +145,7 @@ alias tls=tmux_sessionizer
 alias tlsa=tmux_switch_session 
 alias kat="killall tmux"
 # kill all but active
-alias kta="tmux kill-session -a -t $(tmux display-message -p '#S')"
+# alias kta="tmux kill-session -a -t $(tmux display-message -p '#S')"
 # kill only session with name
 alias kst=tmux_kill_session
 
@@ -198,3 +205,7 @@ fi
 FPP_EDITOR=nvim
 
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
