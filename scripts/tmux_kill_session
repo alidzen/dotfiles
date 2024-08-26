@@ -3,6 +3,6 @@
 selected_sesssions=$(tmux_session_list_with_git | fzf --reverse --multi --header="Kill multiple tmux sessions")
 
 for session in $selected_sesssions; do
-	selected=$(echo $session | awk '{print $1}')
-	tmux kill-session -t "$selected"
+  selected=$(echo $session | awk '{print $1}')
+  tmux kill-session -t "$selected"
 done

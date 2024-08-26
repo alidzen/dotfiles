@@ -95,8 +95,6 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # fzf
-source <(fzf --zsh)
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -129,7 +127,6 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #brew
-
 export PATH="/opt/homebrew/bin:$PATH"
 
 # my bash sctipts path
