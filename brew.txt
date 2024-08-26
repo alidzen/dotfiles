@@ -3,3 +3,5 @@ lazygit
 hurl
 jq
 fpp
+postgresql
+

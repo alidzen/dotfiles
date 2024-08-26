@@ -1,0 +1,10 @@
+#!/bin/bash
+
+kube_logs_pod() {
+  pod=$(kubectl get pods | fzf | awk '{print $1}')
+  echo "$pod"
+
+  kubectl logs "$pod"
+}
+
+kube_logs_pod

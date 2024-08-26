@@ -1,0 +1,10 @@
+#!/bin/bash
+
+kube_exec_pod() {
+  pod=$(kubectl get pods | fzf | awk '{print $1}')
+  echo "$pod"
+
+  kubectl exec -it "$pod" -- sh
+}
+
+kube_exec_pod
