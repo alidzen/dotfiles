@@ -80,7 +80,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #
-plugins=(git ssh-agent zsh-autosuggestions)
+plugins=(git ssh-agent fzf-zsh-plugin)
 # This speeds up pasting w/ autosuggest
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
 pasteinit() {
@@ -96,7 +96,7 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # fzf
 source $ZSH/oh-my-zsh.sh
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -128,6 +128,9 @@ source $ZSH/oh-my-zsh.sh
 
 #brew
 export PATH="/opt/homebrew/bin:$PATH"
+
+#rust
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
 # my bash sctipts path
 export PATH="$HOME/my_scripts:$PATH"
