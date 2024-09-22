@@ -153,9 +153,22 @@ alias pip=/usr/local/opt/python@3.7/bin/pip3
 
 # neovim, nvim, vim
 alias nv='nvim'
-
-# bash
-alias cl=clear
+# congig switcher
+# https://gist.github.com/elijahmanor/b279553c0132bfad7eae23e34ceb593b
+# https://www.youtube.com/watch?v=LkHjJlSgKZY&t=209s
+alias nvim-kick="NVIM_APPNAME=kickstart nvim"
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+function nvims() {
+  items=("default" "kickstart" "LazyVim" )
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
 
 alias dk=docker
 alias dkc=docker-compose
