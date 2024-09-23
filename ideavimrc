@@ -43,6 +43,8 @@ nnoremap H ^
 vnoremap L $
 vnoremap H ^
 
+map <C-s> <Action>(SaveAll)
+
 """ Code --------------------------------
 map <leader>cr <Action>(RenameElement)
 map <leader>ca <Action>(ShowIntentionActions)
@@ -56,14 +58,13 @@ nnoremap mp :action PasteMultiple <CR>
 """ Navigation --------------------------------
 map <C-h> <Action>(PreviousTab)
 map <C-l> <Action>(NextTab)
-" map <C-l> <Action>(SeleceNextTab)
 map <leader>sl <Action>(RecentLocations)
 map [e <Action>(JumpToLastChange)
 map ]e <Action>(JumpToNextChange)
 map <leader>H <Action>(HideAllWindows)
 nnoremap / :action Find<CR>
 xnoremap / :action Find<CR>
-nnoremap <c-s> :action FileStructurePopup<CR>
+nnoremap <leader>ss :action FileStructurePopup<CR>
 nnoremap <leader>e :NERDTreeFocus<CR>
 nnoremap <leader>te :NERDTreeToggle<CR>
 
@@ -102,6 +103,9 @@ map <leader>gp <Action>(Vcs.Push)
 map <leader>gD <Action>(Git.CompareWithBranch)
 map <leader>gd <Action>(Compare.SameVersion)
 nnoremap <leader>hh :action LocalHistory.ShowHistory<CR>
+map [h <Action>(VcsShowPrevChangeMarker)
+map ]h <Action>(VcsShowNextChangeMarker)
+map <leader>ghr <Action>(Vcs.RollbackChangedLines)
 
 """ Folding --------------------------------
 nnoremap zc :action CollapseRegion<CR>
