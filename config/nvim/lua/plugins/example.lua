@@ -76,6 +76,7 @@ return {
         "yaml",
         "astro",
         "hurl",
+        "sql",
       },
     },
   },
@@ -130,6 +131,7 @@ return {
       ensure_installed = {
         "stylua",
         "shellcheck",
+        "sqlfluff",
       },
     },
   },

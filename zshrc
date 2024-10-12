@@ -153,7 +153,7 @@ alias pip=/usr/local/opt/python@3.7/bin/pip3
 
 # neovim, nvim, vim
 alias nv='nvim'
-# congig switcher
+# config switcher
 # https://gist.github.com/elijahmanor/b279553c0132bfad7eae23e34ceb593b
 # https://www.youtube.com/watch?v=LkHjJlSgKZY&t=209s
 alias nvim-kick="NVIM_APPNAME=kickstart nvim"

@@ -1,5 +1,5 @@
 #!/bin/bash
-tmux_session_list_with_git | fzf --header="Open project ctrl-o global search, ctrl-n active" \
+tmux_session_list_with_git | fzf --query="agency-directory" --header="Open project ctrl-o global search, ctrl-n active" \
   --reverse \
   --bind "ctrl-o:reload-sync(tmux_dir_list_with_git)" \
   --bind "ctrl-n:reload-sync(tmux_session_list_with_git)" \
