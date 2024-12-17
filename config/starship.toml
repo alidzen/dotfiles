@@ -1,0 +1,52 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Move the directory to the second line
+format = '$all$directory$character'
+
+# https://starship.rs/advanced-config/#enable-right-prompt
+# format = """$character"""
+# right_format = """$all"""
+
+[kubernetes]
+# symbol = "⛵ "
+detect_folders = ["./kube"]
+detect_files = [".kube.yml"]                           # some  name
+format = '[$symbol$context( \($namespace\))]($style) '
+style = "bold blue"
+disabled = false
+
+[docker_context]
+format = 'via [🐋 $context](blue bold)'
+
+[cmd_duration]
+min_time = 500
+format = '[$duration](bold yellow)'
+
+[git_branch]
+disabled = false
+
+[git_commit]
+disabled = false
+
+[git_state]
+disabled = false
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+
+# [gcloud]
+# format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
+# symbol = '️🇬️ '
+# [gcloud.region_aliases]
+# us-central1 = 'uc1'
+# asia-northeast1 = 'an1'
+
+# [git_branch]
+# symbol = '🌱 '
+# truncation_length = 4
+# truncation_symbol = ''
+# ignore_branches = ['master', 'main']

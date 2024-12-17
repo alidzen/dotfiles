@@ -24,24 +24,31 @@ return {
       style = "night",
     },
   },
-
+  -- lazy.nvim
   {
-    "nvimdev/dashboard-nvim",
-    event = "VimEnter",
-    opts = function(_, opts)
-      local logo = [[
+    "folke/snacks.nvim",
+    opts = {
+      dashboard = {
+        -- your dashboard configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+        preset = {
+
+          header = [[
 ██╗    ██╗██╗  ██╗██╗██╗     ███████╗    ██████╗  ██████╗      ██████╗ ██████╗ ██████╗ ███████╗
 ██║    ██║██║  ██║██║██║     ██╔════╝    ██╔══██╗██╔═══██╗    ██╔════╝██╔═══██╗██╔══██╗██╔════╝
 ██║ █╗ ██║███████║██║██║     █████╗      ██║  ██║██║   ██║    ██║     ██║   ██║██║  ██║█████╗  
 ██║███╗██║██╔══██║██║██║     ██╔══╝      ██║  ██║██║   ██║    ██║     ██║   ██║██║  ██║██╔══╝  
 ╚███╔███╔╝██║  ██║██║███████╗███████╗    ██████╔╝╚██████╔╝    ╚██████╗╚██████╔╝██████╔╝███████╗
  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝    ╚═════╝  ╚═════╝      ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝
-      ]]
-
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-      opts.config.header = vim.split(logo, "\n")
-
-      opts.theme = "doom"
-    end,
+         ]],
+        },
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "startup" },
+        },
+      },
+    },
   },
 }

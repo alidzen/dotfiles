@@ -8,7 +8,6 @@
 - link:
     ~/.zshrc: zshrc
     ~/.zshrc_private: zshrc_private
-    ~/.p10k.zsh: p10k.zsh
     ~/.ideavimrc: ideavimrc
     ~/.vimrc: vimrc
     ~/.gitconfig: git/.gitconfig
