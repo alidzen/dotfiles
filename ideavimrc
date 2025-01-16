@@ -59,14 +59,19 @@ nnoremap mp :action PasteMultiple <CR>
 map <C-h> <Action>(PreviousTab)
 map <C-l> <Action>(NextTab)
 map <leader>sl <Action>(RecentLocations)
-map [e <Action>(JumpToLastChange)
-map ]e <Action>(JumpToNextChange)
+map [c <Action>(JumpToLastChange)
+map ]c <Action>(JumpToNextChange)
 map <leader>H <Action>(HideAllWindows)
 nnoremap / :action Find<CR>
 xnoremap / :action Find<CR>
 nnoremap <leader>ss :action FileStructurePopup<CR>
 nnoremap <leader>e :NERDTreeFocus<CR>
 nnoremap <leader>te :NERDTreeToggle<CR>
+
+""" Window --------------------------------
+map <leader>V <Action>(SplitVertically)
+map [w <Action>(PrevSplitter)
+map ]w <Action>(NextSplitter)
 
 """ Find --------------------------------
 map <leader>ff <Action>(GotoFile)

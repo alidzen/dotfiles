@@ -78,7 +78,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 # Starship Prompt
 eval "$(starship init zsh)"
 
-plugins=(git ssh-agent fzf-zsh-plugin zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git ssh-agent fzf-zsh-plugin zsh-syntax-highlighting)
 
 # Kubectx and Kubens
 export PATH=$PATH:/usr/local/bin
@@ -166,7 +166,7 @@ function nvims() {
 }
 
 alias dk=docker
-alias dkc=docker-compose
+alias dkc=docker compose
 
 # Projects Aliases
 function run-b () {
@@ -216,3 +216,5 @@ FPP_EDITOR=nvim
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+export PUPPETEER_EXECUTABLE_PATH=`which chromium`

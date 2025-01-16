@@ -4,6 +4,7 @@
 --
 
 local opt = vim.opt
+vim.g.lazyvim_picker = "telescope"
 
 opt.langmap =
   "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
