@@ -16,7 +16,6 @@ gmp
 gnu-sed
 helm
 hurl
-icu4c@75
 icu4c@76
 jq
 jwt-cli
@@ -70,6 +69,7 @@ redis
 ripgrep
 s-lang
 semgrep
+sops
 sqlite
 starship
 tmux
@@ -78,7 +78,9 @@ tree-sitter
 unibilium
 utf8proc
 xz
+zsh-syntax-highlighting
 zstd
+chromium
 firefox
 font-fira-code-nerd-font
 google-cloud-sdk
