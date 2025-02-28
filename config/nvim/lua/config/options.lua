@@ -6,8 +6,12 @@
 local opt = vim.opt
 vim.g.lazyvim_picker = "telescope"
 
-opt.langmap =
+vim.o.langmap =
   "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
+
+vim.o.spelllang = "ru_ru,en_us"
 
 opt.scrolloff = 30
 opt.relativenumber = true
+
+vim.g.snacks_animate = false

@@ -1,0 +1,118 @@
+---
+- name: Setup Developer Environment on Fedora
+  hosts: localhost
+  become: true  # This is needed for package installation
+  vars:
+    packages:
+      # Development Tools
+      - neovim
+      - git
+      - tmux
+      - fzf
+      - ripgrep
+      - fd-find
+      - jq
+      - tree
+      - zsh
+      - python3-pip
+      - python3.11
+      - python3.12
+      - curl  # Required for nvm installation
+
+      # Build dependencies
+      - gcc
+      - gcc-c++
+      - make
+      - cmake
+
+      # Additional tools
+      - bat  # Similar to cat with syntax highlighting
+      - delta  # For git diff
+      - lazygit
+      - starship  # Shell prompt
+      
+  tasks:
+    - name: Update dnf cache
+      dnf:
+        update_cache: yes
+
+    - name: Install Development Tools group
+      dnf:
+        name: "@Development Tools"
+        state: present
+
+    - name: Install required packages
+      dnf:
+        name: "{{ packages }}"
+        state: present
+
+    - name: Install Rust (required for some tools)
+      shell: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      args:
+        creates: "{{ ansible_env.HOME }}/.cargo/bin/rustc"
+      become: false
+
+    - name: Clone dotfiles repository
+      git:
+        repo: "{{ playbook_dir }}"
+        dest: "{{ ansible_env.HOME }}/.dotfiles"
+        version: main
+      become: false
+
+    - name: Create symbolic links for configuration files
+      file:
+        src: "{{ ansible_env.HOME }}/.dotfiles/{{ item.src }}"
+        dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+        state: link
+        force: yes
+      loop:
+        - { src: 'nvim', dest: '.config/nvim' }
+        - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
+        - { src: 'zsh/zshrc', dest: '.zshrc' }
+      become: false
+
+    - name: Install Oh My Zsh
+      shell: |
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+      args:
+        creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+      become: false
+
+    - name: Install zsh-syntax-highlighting
+      git:
+        repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+        dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+      become: false
+
+    - name: Set ZSH as default shell
+      user:
+        name: "{{ ansible_env.USER }}"
+        shell: /bin/zsh
+
+    - name: Install NVM
+      shell: |
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+      args:
+        creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+      become: false
+
+    - name: Add NVM configuration to .zshrc
+      blockinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        marker: "# {mark} NVM CONFIGURATION"
+        block: |
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+      become: false
+
+    - name: Install latest LTS version of Node.js
+      shell: |
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        nvm install --lts
+        nvm use --lts
+      args:
+        executable: /bin/bash
+      become: false
