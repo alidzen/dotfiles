@@ -1,4 +1,14 @@
-/.idea/dotfiles.iml
+# Private configuration files
+zsh/zshrc_private
+zsh/zshrc_work
+**/zshrc_private
+**/zshrc_work
+
+# Misc
+.DS_Store
+*.log
+*.swp
+*.swo/.idea/dotfiles.iml
 /.idea/modules.xml
 /.idea/vcs.xml
 /.idea/workspace.xml

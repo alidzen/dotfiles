@@ -1,0 +1,19 @@
+# Private ZSH Configuration
+# Copy this file to ~/.zshrc_private and modify as needed
+
+# Example private environment variables
+# export GITHUB_TOKEN=""
+# export AWS_ACCESS_KEY_ID=""
+# export AWS_SECRET_ACCESS_KEY=""
+
+# Example private aliases
+# alias ssh-dev="ssh user@dev-server"
+# alias ssh-prod="ssh user@prod-server"
+
+# Example private paths
+# export PATH="$PATH:/path/to/private/bins"
+
+# Example private functions
+# function deploy-prod() {
+#   # Your deployment script
+# }

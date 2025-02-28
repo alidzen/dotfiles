@@ -1,7 +1,7 @@
 ---
 - name: Setup Developer Environment on Fedora
   hosts: localhost
-  become: true  # This is needed for package installation
+  become: true # This is needed for package installation
   vars:
     packages:
       # Development Tools
@@ -17,7 +17,7 @@
       - python3-pip
       - python3.11
       - python3.12
-      - curl  # Required for nvm installation
+      - curl # Required for nvm installation
 
       # Build dependencies
       - gcc
@@ -26,11 +26,11 @@
       - cmake
 
       # Additional tools
-      - bat  # Similar to cat with syntax highlighting
-      - delta  # For git diff
+      - bat # Similar to cat with syntax highlighting
+      - delta # For git diff
       - lazygit
-      - starship  # Shell prompt
-      
+      - starship # Shell prompt
+
   tasks:
     - name: Update dnf cache
       dnf:
@@ -60,16 +60,40 @@
         version: main
       become: false
 
-    - name: Create symbolic links for configuration files
+    - name: Create private ZSH config if it doesn't exist
+      copy:
+        src: "{{ ansible_env.HOME }}/.dotfiles/zsh/zshrc_private.template"
+        dest: "{{ ansible_env.HOME }}/.zshrc_private"
+        force: no # Don't overwrite if exists
+        mode: "0600" # Secure permissions for private data
+      become: false
+
+    - name: Check if .zshrc exists and is not a symlink
+      stat:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+      register: zshrc_stat
+      become: false
+
+    - name: Backup existing .zshrc if it's not a symlink
+      copy:
+        src: "{{ ansible_env.HOME }}/.zshrc"
+        dest: "{{ ansible_env.HOME }}/.zshrc.backup.{{ ansible_date_time.epoch }}"
+        remote_src: yes
+      when: zshrc_stat.stat.exists and not zshrc_stat.stat.islnk
+      become: false
+
+    - name: Remove existing .zshrc if it's not a symlink
       file:
-        src: "{{ ansible_env.HOME }}/.dotfiles/{{ item.src }}"
-        dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
-        state: link
-        force: yes
-      loop:
-        - { src: 'nvim', dest: '.config/nvim' }
-        - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
-        - { src: 'zsh/zshrc', dest: '.zshrc' }
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        state: absent
+      when: zshrc_stat.stat.exists and not zshrc_stat.stat.islnk
+      become: false
+
+    - name: Run Dotbot for symlinks
+      shell: |
+        ./install
+      args:
+        chdir: "{{ ansible_env.HOME }}/.dotfiles"
       become: false
 
     - name: Install Oh My Zsh
