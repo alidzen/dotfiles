@@ -5,6 +5,8 @@ import { execSync, spawnSync } from "child_process";
 function fsb(patterns) {
   console.log("Patters: ", patterns);
   try {
+    execSync("git fetch");
+
     const branches = execSync("git branch --all", { encoding: "utf8" })
       .split("\n")
       .map((line) => line.trim())
@@ -32,10 +34,16 @@ function fsb(patterns) {
       return;
     }
 
-    // remotes/origin/HEAD -> origin/main
-    const lastAfterSlashReg = /^(.*\/)/;
-    const branch = selectedBranch.replace(lastAfterSlashReg, "");
+    const lastAfterSlashReg = /^(.*remotes\/)/;
+    let branch = selectedBranch.replace(lastAfterSlashReg, "");
+    if (branch.includes("HEAD")) {
+      branch = branch.split(" ")[2];
+    }
     console.log("branch", branch);
+    const checkBranch = spawnSync("git checkout", [branch], {
+      encoding: "utf8",
+    });
+    console.log(checkBranch.status, checkBranch.stdout, checkBranch.error);
   } catch (e) {
     console.error("/nError to pick branches");
   }
