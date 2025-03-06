@@ -40,11 +40,13 @@ function fsb(patterns) {
       branch = branch.split(" ")[2];
     }
     console.log("branch", branch);
-    const checkBranch = spawnSync("git checkout", [branch], {
-      encoding: "utf8",
-    });
-    console.log(checkBranch.status, checkBranch.stdout, checkBranch.error);
+    // const checkBranch = spawnSync("git checkout", [branch], {
+    //   encoding: "utf8",
+    // });
+    const checkBranch = execSync(`git checkout ${branch}`);
+    console.log(checkBranch.status);
   } catch (e) {
+    console.error(e);
     console.error("/nError to pick branches");
   }
 }
