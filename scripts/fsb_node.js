@@ -3,9 +3,9 @@
 import { execSync, spawnSync } from "child_process";
 
 function fsb(patterns) {
-  console.log("Patters: ", patterns);
   try {
-    execSync("git fetch");
+    // TODO advanced: asynchronyosly update results for fzf-tmux
+    // execSync("git fetch");
 
     const branches = execSync("git branch --all", { encoding: "utf8" })
       .split("\n")
@@ -13,9 +13,10 @@ function fsb(patterns) {
       .filter((line) => line.toLowerCase().includes(patterns.toLowerCase()))
       .join("\n");
 
-    console.log(branches);
     if (!branches) {
-      console.log("[fsb] No branch matches the provided pattern");
+      execSync(
+        `tmux display-message "[fsb] No branch matches the provided pattern"`,
+      );
       return;
     }
 
@@ -28,9 +29,8 @@ function fsb(patterns) {
     }
 
     const selectedBranch = fzf.stdout.trim();
-    console.log("selectedBranches", selectedBranch);
     if (!selectedBranch) {
-      console.log("[fsb] no branch selected");
+      execSync(`tmux display-message "[fsb] no branch selected"`);
       return;
     }
 
@@ -39,15 +39,20 @@ function fsb(patterns) {
     if (branch.includes("HEAD")) {
       branch = branch.split(" ")[2];
     }
-    console.log("branch", branch);
-    // const checkBranch = spawnSync("git checkout", [branch], {
-    //   encoding: "utf8",
-    // });
-    const checkBranch = execSync(`git checkout ${branch}`);
-    console.log(checkBranch.status);
+    try {
+      const checkBranch = execSync(`git checkout ${branch}`);
+      execSync(`display-message "Checkout to ${checkBranch}"`);
+    } catch (e) {
+      const err = e.message.split("\n").join(", ");
+
+      execSync(
+        `tmux display-popup -E "echo ${err}; echo 'Press enter to close...'; read"`,
+        { encoding: "utf8" },
+      );
+    }
   } catch (e) {
-    console.error(e);
-    console.error("/nError to pick branches");
+    console.table(e);
+    console.error("\n[fsb] error to pick branches:", e?.message);
   }
 }
 
