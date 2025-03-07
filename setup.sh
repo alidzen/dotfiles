@@ -19,7 +19,7 @@ fi
 
 # Run the playbook
 echo "Running Ansible playbook..."
-ansible-playbook fedora_setup.yml
+ansible-playbook -K fedora_setup.yml
 
 echo "Setup completed successfully!"
 echo "Please log out and log back in for all changes to take effect."

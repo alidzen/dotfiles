@@ -1,7 +1,7 @@
 ---
 - name: Setup Developer Environment on Fedora
   hosts: localhost
-  become: true # This is needed for package installation
+  become: false # Default to non-privileged
   vars:
     packages:
       # Development Tools
@@ -18,118 +18,104 @@
       - python3.11
       - python3.12
       - curl # Required for nvm installation
-
       # Build dependencies
       - gcc
       - gcc-c++
       - make
       - cmake
-
       # Additional tools
       - bat # Similar to cat with syntax highlighting
       - delta # For git diff
-      - lazygit
-      - starship # Shell prompt
+      # - lazygit # install manually!
+      # - starship # Shell prompt, install manually!
 
   tasks:
     - name: Update dnf cache
       dnf:
         update_cache: yes
+      become: true
 
     - name: Install Development Tools group
       dnf:
         name: "@Development Tools"
         state: present
+      become: true
 
     - name: Install required packages
       dnf:
         name: "{{ packages }}"
         state: present
+      become: true
 
     - name: Install Rust (required for some tools)
       shell: |
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
       args:
-        creates: "{{ ansible_env.HOME }}/.cargo/bin/rustc"
-      become: false
-
-    - name: Clone dotfiles repository
-      git:
-        repo: "{{ playbook_dir }}"
-        dest: "{{ ansible_env.HOME }}/.dotfiles"
-        version: main
-      become: false
+        creates: "{{ user_home }}/.cargo/bin/rustc"
 
     - name: Create private ZSH config if it doesn't exist
       copy:
-        src: "{{ ansible_env.HOME }}/.dotfiles/zsh/zshrc_private.template"
-        dest: "{{ ansible_env.HOME }}/.zshrc_private"
+        src: "{{ playbook_dir }}/zsh/zshrc_private.template"
+        dest: "{{ user_home }}/.zshrc_private"
         force: no # Don't overwrite if exists
         mode: "0600" # Secure permissions for private data
-      become: false
 
     - name: Check if .zshrc exists and is not a symlink
       stat:
-        path: "{{ ansible_env.HOME }}/.zshrc"
+        path: "{{ user_home }}/.zshrc"
       register: zshrc_stat
-      become: false
 
     - name: Backup existing .zshrc if it's not a symlink
       copy:
-        src: "{{ ansible_env.HOME }}/.zshrc"
-        dest: "{{ ansible_env.HOME }}/.zshrc.backup.{{ ansible_date_time.epoch }}"
+        src: "{{ user_home }}/.zshrc"
+        dest: "{{ user_home }}/.zshrc.backup.{{ ansible_date_time.epoch }}"
         remote_src: yes
       when: zshrc_stat.stat.exists and not zshrc_stat.stat.islnk
-      become: false
 
     - name: Remove existing .zshrc if it's not a symlink
       file:
-        path: "{{ ansible_env.HOME }}/.zshrc"
+        path: "{{ user_home }}/.zshrc"
         state: absent
       when: zshrc_stat.stat.exists and not zshrc_stat.stat.islnk
-      become: false
 
     - name: Run Dotbot for symlinks
       shell: |
         ./install
       args:
-        chdir: "{{ ansible_env.HOME }}/.dotfiles"
-      become: false
+        chdir: "{{ user_home }}/code/dotfiles"
+      ignore_errors: true
 
     - name: Install Oh My Zsh
       shell: |
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
       args:
-        creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
-      become: false
+        creates: "{{ user_home }}/.oh-my-zsh"
 
     - name: Install zsh-syntax-highlighting
       git:
         repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-        dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
-      become: false
+        dest: "{{ user_home }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 
     - name: Set ZSH as default shell
       user:
-        name: "{{ ansible_env.USER }}"
+        name: "{{ lookup('env', 'USER') }}"
         shell: /bin/zsh
+      become: true
 
     - name: Install NVM
       shell: |
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
       args:
-        creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-      become: false
+        creates: "{{ user_home }}/.nvm/nvm.sh"
 
     - name: Add NVM configuration to .zshrc
       blockinfile:
-        path: "{{ ansible_env.HOME }}/.zshrc"
+        path: "{{ user_home }}/.zshrc"
         marker: "# {mark} NVM CONFIGURATION"
         block: |
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-      become: false
 
     - name: Install latest LTS version of Node.js
       shell: |
@@ -139,4 +125,3 @@
         nvm use --lts
       args:
         executable: /bin/bash
-      become: false
