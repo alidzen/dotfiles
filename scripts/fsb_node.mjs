@@ -41,7 +41,7 @@ function fsb(patterns) {
     }
     try {
       const checkBranch = execSync(`git checkout ${branch}`);
-      execSync(`display-message "Checkout to ${checkBranch}"`);
+      execSync(`tmux display-message "Checkout to ${checkBranch}"`);
     } catch (e) {
       const err = e.message.split("\n").join(", ");
 
