@@ -1,13 +1,30 @@
 #!/usr/bin/env node
 
-import { execSync, spawnSync } from "child_process";
+import { execSync, spawnSync, exec } from "child_process";
 
 function fsb(patterns) {
   try {
     // TODO advanced: asynchronyosly update results for fzf-tmux
-    // execSync("git fetch");
+    exec("git fetch", { encoding: "utf8" }, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
+      console.error(`stderr: ${stderr}`);
+      let branchesAll = execSync("git branch --all", { encoding: "utf8" })
+        .split("\n")
+        .map((line) => line.trim())
+        .filter((line) => line.toLowerCase().includes(patterns.toLowerCase()))
 
-    const branches = execSync("git branch --all", { encoding: "utf8" })
+        .join("\n");
+      const fzf = spawnSync("fzf-tmux", ["-p", "--reverse", "-1", "-0", "+m"], {
+        input: branchesAll,
+        encoding: "utf8",
+      });
+    });
+
+    let branches = execSync("git branch --all", { encoding: "utf8" })
       .split("\n")
       .map((line) => line.trim())
       .filter((line) => line.toLowerCase().includes(patterns.toLowerCase()))
