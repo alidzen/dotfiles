@@ -20,6 +20,7 @@ return {
       -- Load custom snippets from my-snippets directory
       require("luasnip.loaders.from_lua").load({
         paths = vim.fn.stdpath("config") .. "/my-snippets",
+        fileTypes = { "css", "scss", "sass" },
       })
 
       -- Optional: load VSCode style snippets (from friendly-snippets)
