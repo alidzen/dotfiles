@@ -3,9 +3,9 @@ return {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
     build = "make install_jsregexp",
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-    },
+    -- dependencies = {
+    --   "rafamadriz/friendly-snippets",
+    -- },
     config = function()
       local luasnip = require("luasnip")
 
@@ -24,7 +24,7 @@ return {
       })
 
       -- Optional: load VSCode style snippets (from friendly-snippets)
-      require("luasnip.loaders.from_vscode").lazy_load()
+      -- require("luasnip.loaders.from_vscode").lazy_load()
 
       -- Set keybindings for navigating snippets
       vim.keymap.set({ "i", "s" }, "<Tab>", function()

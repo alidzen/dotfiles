@@ -30,9 +30,46 @@ local css_snippets = {
     i(1),
     t(")"),
   }),
+
+  -- Snippet for CSS font-size
+  s("fs", {
+    t("var(--fs-"),
+    i(1),
+    t("00)"),
+  }),
+
+  -- Snippet for CSS font-size
+  s("lh", {
+    t("var(--lh-"),
+    i(1),
+    t("00)"),
+  }),
+
+  -- Snippet for min-width 600px media query
+  s("msm", {
+    t("@media screen and (min-width: 600px) {"),
+    t({ "", "  " }),
+    i(0),
+    t({ "", "}" }),
+  }),
+
+  -- Snippet for min-width 768px media query
+  s("mst", {
+    t("@media screen and (min-width: 768px) {"),
+    t({ "", "  " }),
+    i(0),
+    t({ "", "}" }),
+  }),
+
+  -- Snippet for min-width 1100px media query
+  s("msd", {
+    t("@media screen and (min-width: 1100px) {"),
+    t({ "", "  " }),
+    i(0),
+    t({ "", "}" }),
+  }),
 }
 
 ls.add_snippets("css", css_snippets)
 ls.add_snippets("scss", css_snippets)
 ls.add_snippets("sass", css_snippets)
-
