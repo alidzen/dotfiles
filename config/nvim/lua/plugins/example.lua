@@ -66,6 +66,7 @@ return {
         "astro",
         "hurl",
         "sql",
+        "rescript",
       },
     },
   },

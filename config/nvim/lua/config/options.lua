@@ -15,3 +15,10 @@ opt.scrolloff = 30
 opt.relativenumber = true
 
 vim.g.snacks_animate = false
+
+-- postcss support
+vim.filetype.add({
+  extension = {
+    pcss = "css",
+  },
+})

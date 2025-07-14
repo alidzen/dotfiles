@@ -13,6 +13,7 @@ set textobj-entire
 set ReplaceWithRegister
 set NERDTree
 set highlightedyank
+set which-key
 
 """ Plugin settings -------------------------
 let g:argtextobj_pairs="[:],(:),<:>"
@@ -33,6 +34,11 @@ set ideastatusicon=gray
 set idearefactormode=keep
 set visualbell
 set noerrorbells
+
+
+""" Plugin Settings ------------------
+""" which-key
+set timeoutlen=5000
 
 """ Mappings --------------------------------
 map <leader>mf <Plug>(easymotion-s)

@@ -1,6 +1,10 @@
 #!/bin/bash
+
+# grab the initial query from $1 (defaults to empty if you don’t supply one)
+initial_query="${1:-}"
+
 selected_sessions=$(
-  tmux_session_list_with_git | fzf --multi --header="Open project ctrl-o global search, ctrl-n active" \
+  tmux_session_list_with_git | fzf --multi --query="$initial_query" --header="Open project ctrl-o global search, ctrl-n active" \
     --reverse \
     --bind "ctrl-o:reload-sync(tmux_dir_list_with_git)" \
     --bind "ctrl-n:reload-sync(tmux_session_list_with_git)"
