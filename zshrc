@@ -185,6 +185,9 @@ alias gs="git status"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Cluade
+alias cl=claude
+
 # kubectl
 alias mk=minikube
 # autocomplition

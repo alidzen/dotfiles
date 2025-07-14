@@ -1,5 +1,8 @@
+adr-tools
 ansible
 blueutil
+brotli
+c-ares
 ca-certificates
 certifi
 cffi
@@ -8,16 +11,20 @@ defbro
 diffutils
 fd
 fpp
+fx
 fzf
 gettext
 gh
 git-delta
+git-lfs
+glab
 glib
 gmp
 gnu-sed
 helm
 hurl
 icu4c@76
+icu4c@77
 jq
 jwt-cli
 k9s
@@ -27,6 +34,7 @@ kubernetes-cli
 lazygit
 libev
 libevent
+libnghttp2
 libpng
 libsodium
 libssh
@@ -49,6 +57,7 @@ mpdecimal
 msgpack
 ncurses
 neovim
+node
 oniguruma
 openssl@3
 pcre
@@ -61,7 +70,6 @@ postgresql@16
 pycparser
 python-certifi
 python-cryptography
-python-packaging
 python@3.11
 python@3.12
 python@3.13
