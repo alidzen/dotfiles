@@ -1,0 +1,7 @@
+chromium
+firefox
+font-fira-code-nerd-font
+google-cloud-sdk
+multifirefox
+ngrok
+popsql

@@ -1,0 +1,32 @@
+Alacritty.app
+Amazon Kindle.app
+BetterDisplay.app
+Brave Browser.app
+ChatGPT.app
+Claude.app
+Docker.app
+Figma.app
+Firefox.app
+Google Chrome.app
+Hidden Bar.app
+Homerow.app
+iTerm.app
+Karabiner-Elements.app
+Karabiner-EventViewer.app
+kitty.app
+logioptionsplus.app
+OneTab.app
+Pages.app
+Perplexity.app
+Raycast.app
+Safari.app
+Skitch.app
+Slack.app
+Telegram.app
+Utilities
+Vimari.app
+Visual Studio Code.app
+Warp.app
+WebPomodoro.app
+Xcode.app
+zoom.us.app
